@@ -7,30 +7,34 @@
     <ui:define name="content">
         <h:form id="form">
             <p:panel header="Students">
-                <p:dataTable id="table" var="students" value="#{studentList.students}">
+                <p:dataTable id="table" var="student" value="#{studentList.students}">
                     <p:column>
                         <f:facet name="header"># Id</f:facet>
-                        <h:outputText value="students.id"/>
+                        <h:outputText value="#{student.id}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">First Name</f:facet>
-                        <h:outputText value="students.firstName"/>
+                        <h:outputText value="#{student.firstName}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">Last Name</f:facet>
-                        <h:outputText value="students.lastName"/>
+                        <h:outputText value="#{student.lastName}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">UserName</f:facet>
-                        <h:outputText value="students.userName"/>
+                        <h:outputText value="#{student.userName}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Password</f:facet>
+                        <h:outputFormat value="***"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">Major</f:facet>
-                        <h:outputText value="students.major"/>
+                        <h:outputText value="#{student.major}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">GPA</f:facet>
-                        <h:outputText value="students.gpa"/>
+                        <h:outputText value="#{student.gpa}"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>

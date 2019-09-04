@@ -2,12 +2,14 @@ package com.student.pojo;
 
 import lombok.Data;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
+@ManagedBean(name = "student")
 public class Student {
 
     public Student(String firstName, String lastName, String userName, String password, String major, float gpa, String gender) {

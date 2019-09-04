@@ -7,17 +7,17 @@
     <ui:define name="content">
         <h:form id="studentForm">
             <p:panel header="Students">
-                <h:panelGrid columns="1">
+                <h:panelGrid columns="1" var="registerController" value="#{registerController.student}">
                     <p:outputLabel for="id" value="id :"/>
-                    <p:inputText id="id" value="#{registerController.student.id}"/>
+                    <p:inputText id="id" value="#{registerController.id}"/>
                     <p:outputLabel for="firstName" value="First Name :"/>
-                    <p:inputText id="firstName" value="#{registerController.student.firstName}"/>
+                    <p:inputText id="firstName" value="#{registerController.firstName}"/>
                     <p:outputLabel for="lastName" value="Last Name :"/>
-                    <p:inputText id="lastName" value="#{registerController.student.lastName}"/>
+                    <p:inputText id="lastName" value="#{registerController.lastName}"/>
                     <p:outputLabel for="major" value="Major :"/>
-                    <p:inputText id="major" value="#{registerController.student.major}"/>
+                    <p:inputText id="major" value="#{registerController.major}"/>
                     <p:outputLabel for="gpa" value="GPA :"/>
-                    <p:inputText id="gpa" value="#{registerController.student.gpa}"/>
+                    <p:inputText id="gpa" value="#{registerController.gpa}"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>

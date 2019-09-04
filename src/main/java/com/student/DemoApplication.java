@@ -3,16 +3,19 @@ package com.student;
 import javax.servlet.DispatcherType;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import javax.faces.webapp.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.faces.webapp.FacesServlet;
 import java.util.EnumSet;
 
-@SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan({"com.student.controller", "com.student.data", "com.student.pojo"})
 public class DemoApplication {
 
     public static void main(String[] args) {

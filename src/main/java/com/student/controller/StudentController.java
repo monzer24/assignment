@@ -27,7 +27,7 @@ public class StudentController {
         repo.save(student);
         System.out.println("hi");
         student = new Student();
-        return "/student-list.xhtml?faces-redirect=true";
+        return "/student-form.xhtml";
     }
 
     private Student getStudent(){
