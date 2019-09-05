@@ -11,30 +11,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
+import javax.faces.bean.ManagedBean;
 import java.util.List;
 
 @Scope(value = "session")
-@Component(value = "studentList")
-@ELBeanName(value = "studentList")
-@Join(path="/", to="student-list.jsf")
+@Component(value = "students")
+@ELBeanName(value = "students")
+@ManagedBean(name = "students")
+@Join(path="/list", to="student-list.jsf")
+@RestController
+@RequestMapping("/list")
 public class StudentListController {
 
-    private final StudentRepository repo;
+    @Autowired
+    private StudentRepository repo;
 
     private List<Student> students;
 
-    public StudentListController(@Qualifier(value = "studentRepository") StudentRepository repo) {
+    @Autowired
+    public StudentListController(StudentRepository repo) {
         this.repo = repo;
+    }
+
+    @GetMapping
+    public String toStudentList(){
+        System.out.println("hello");
+        return "/student-list.xhtml";
     }
 
     @Deferred
 //    @RequestAction
-    @IgnorePostback
+//    @IgnorePostback
     public void getAllStudents(){
         System.out.println("hello");
-        students = (List<Student>) repo.findAll();
+        students = repo.findAll();
         System.out.println(students);
     }
 

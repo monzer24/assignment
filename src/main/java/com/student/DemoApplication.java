@@ -4,7 +4,6 @@ import javax.servlet.DispatcherType;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import javax.faces.webapp.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -24,8 +23,11 @@ public class DemoApplication {
 
     @Bean
     public ServletRegistrationBean<FacesServlet> servletRegistrationBean(){
-        FacesServlet faces = new FacesServlet();
-        return new ServletRegistrationBean<>(faces, "*.jsf");
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new FacesServlet(), "*.jsf");
+        registrationBean.addUrlMappings("*.xhtml");
+        registrationBean.addUrlMappings("/student/*");
+        registrationBean.addUrlMappings("/list/*");
+        return registrationBean;
     }
 
     @Bean
