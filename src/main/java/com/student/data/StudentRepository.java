@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Component("repo")
+@Component(value = "repo")
 public interface StudentRepository extends CrudRepository<Student, String> {
 
+    @Override
     List<Student> findAll();
 }

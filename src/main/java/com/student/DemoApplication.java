@@ -1,10 +1,10 @@
 package com.student;
 
 import javax.servlet.DispatcherType;
+
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-//import javax.faces.webapp.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -38,4 +38,5 @@ public class DemoApplication {
         rwFilter.addUrlPatterns("/*");
         return rwFilter;
     }
+
 }

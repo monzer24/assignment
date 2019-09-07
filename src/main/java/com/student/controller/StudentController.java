@@ -14,23 +14,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.faces.bean.ManagedBean;
 
-@Scope(value="session")
 @Component(value = "registerController")
-@ELBeanName(value = "registerController")
+//@ELBeanName(value = "registerController")
 @ManagedBean(name = "registerController")
 @Join(path="/student", to="/student-form.jsf")
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
+    private final StudentRepository repo;
+
+    private Student student;
+
     public StudentController(StudentRepository repo) {
         this.repo = repo;
     }
 
-    private StudentRepository repo;
+    public StudentRepository getRepo() {
+        return repo;
+    }
 
-    private Student student;
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     @GetMapping
     public String toStudent(){
@@ -46,6 +52,7 @@ public class StudentController {
     }
 
     public Student getStudent(){
+        System.out.println(student);
         return student;
     }
 

@@ -2,6 +2,7 @@ package com.student.controller;
 
 import com.student.data.StudentRepository;
 import com.student.pojo.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.rewrite.annotation.Join;
 import org.ocpsoft.rewrite.annotation.RequestAction;
 import org.ocpsoft.rewrite.el.ELBeanName;
@@ -14,27 +15,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.annotation.RequestScope;
-
 import javax.faces.bean.ManagedBean;
 import java.util.List;
 
-@Scope(value = "session")
-@Component(value = "students")
-@ELBeanName(value = "students")
+@Component(value = "studentListController")
+@ELBeanName(value = "studentListController")
 @ManagedBean(name = "students")
 @Join(path="/list", to="student-list.jsf")
 @RestController
 @RequestMapping("/list")
+@Slf4j
 public class StudentListController {
 
-    @Autowired
     private StudentRepository repo;
 
     private List<Student> students;
 
     @Autowired
     public StudentListController(StudentRepository repo) {
+        System.out.println("constructed");
         this.repo = repo;
     }
 
@@ -45,16 +44,22 @@ public class StudentListController {
     }
 
     @Deferred
-//    @RequestAction
-//    @IgnorePostback
+    @RequestAction
+    @IgnorePostback
     public void getAllStudents(){
         System.out.println("hello");
         students = repo.findAll();
         System.out.println(students);
     }
 
-    public List<Student> getStudents(){
-        return students;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
+    public List<Student> getStudents(){
+        getAllStudents();
+        log.info(String.valueOf(students));
+        System.out.println(students);
+        return students;
+    }
 }

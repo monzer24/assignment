@@ -7,7 +7,7 @@
     <ui:define name="content">
         <h:form id="form">
             <p:panel header="Students">
-                <p:dataTable id="table" var="student" value="#{students.students.firstName}">
+                <p:dataTable id="table" var="student" value="#{studentListController.students}">
                     <p:column>
                         <f:facet name="header"># Id</f:facet>
                         <h:outputText value="#{student.id}"/>
